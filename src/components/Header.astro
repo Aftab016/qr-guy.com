@@ -132,11 +132,12 @@
   window.addEventListener('hashchange', updateActiveTab);
   
   function updateActiveTab() {
-    const hash = window.location.hash.replace('#', '') || 'generator';
+    const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+    const hash = window.location.hash.replace('#', '') || (isHome ? 'generator' : '');
     
     tabButtons.forEach(btn => {
       const btnTab = btn.getAttribute('data-tab-btn');
-      if (btnTab === hash) {
+      if (btnTab === hash && hash) {
         btn.classList.add('bg-canvas', 'border-hairline', 'shadow-level-2', 'text-ink');
         btn.classList.remove('bg-transparent', 'border-transparent', 'text-body', 'hover:bg-canvas/50');
         btn.setAttribute('aria-selected', 'true');
@@ -147,16 +148,23 @@
       }
     });
 
-    // Dispatch a custom event to change visibility of tab containers
-    const tabChangeEvent = new CustomEvent('tab-change', { detail: { tab: hash } });
-    window.dispatchEvent(tabChangeEvent);
+    if (hash) {
+      // Dispatch a custom event to change visibility of tab containers
+      const tabChangeEvent = new CustomEvent('tab-change', { detail: { tab: hash } });
+      window.dispatchEvent(tabChangeEvent);
+    }
   }
 
   // Bind tab click handlers
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.getAttribute('data-tab-btn');
-      window.location.hash = `#${tab}`;
+      const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+      if (!isHome) {
+        window.location.href = `/#${tab}`;
+      } else {
+        window.location.hash = `#${tab}`;
+      }
     });
   });
 
@@ -164,7 +172,12 @@
   const startBtn = document.querySelector('[data-action="start-generating"]') as HTMLButtonElement | null;
   if (startBtn) {
     startBtn.addEventListener('click', () => {
-      window.location.hash = '#generator';
+      const isHome = window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '';
+      if (!isHome) {
+        window.location.href = '/#generator';
+      } else {
+        window.location.hash = '#generator';
+      }
     });
   }
   

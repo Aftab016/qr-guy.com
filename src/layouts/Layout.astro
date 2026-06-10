@@ -4,13 +4,15 @@ interface Props {
 	description?: string;
 	canonicalUrl?: string;
 	ogImage?: string;
+	robots?: string;
 }
 
 const { 
 	title = "QR Guy — Free QR Maker & Barcode Maker Online (qrguy)", 
 	description = "Create and scan QR codes & barcodes online. QR Guy is a free qr maker and barcode maker (UPC, 2D) that runs 100% client-side and offline-ready. Customize shapes, gradients, and logos.",
 	canonicalUrl = "https://qrguy.com",
-	ogImage = "https://qrguy.com/og-image.png"
+	ogImage = "https://qrguy.com/og-image.png",
+	robots = "index, follow"
 } = Astro.props;
 
 import "../styles/global.css";
@@ -26,7 +28,7 @@ import "../styles/global.css";
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content="qrguy, qr maker, qr maker free, free qr maker, qr maker online, adobe qr maker, qr maker google, google qr maker, canva qr maker, qr gen, barcode maker, barcode maker online, qr barcode maker, free qr barcode maker, upc barcode maker, free barcode maker, online barcode maker, barcode maker software, barcode maker pro, barcode scanner, handheld barcode scanner, barcode scanner app, free barcode scanner, barcode scanner online, 2d barcode scanner, walmart barcode scanner, amazon barcode scanner, online barcode scanner, zebra barcode scanner, qr guy, qr guys, qr boy" />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content={robots} />
 		<link rel="canonical" href={canonicalUrl} />
 		
 		<!-- Open Graph / Facebook -->

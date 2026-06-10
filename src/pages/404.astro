@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Page Not Found — QR Guy" 
+  description="The page you are looking for does not exist on QR Guy."
+  robots="noindex, nofollow"
+>
+  <Header />
+
+  <main class="flex-grow relative bg-canvas flex items-center justify-center py-20 md:py-32 px-6 md:px-8 font-sans overflow-hidden">
+    <!-- Premium Mesh Gradient Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
+      <div class="absolute top-[10%] left-[-10%] w-[55%] h-[60%] rounded-full bg-link/10 dark:bg-link/5 blur-[100px] md:blur-[130px] animate-mesh-1"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-violet/10 dark:bg-violet/5 blur-[100px] md:blur-[130px] animate-mesh-3"></div>
+    </div>
+
+    <div class="max-w-[500px] w-full text-center space-y-8 relative z-10">
+      <!-- Error Code Display -->
+      <div class="relative inline-flex items-center justify-center">
+        <!-- Outer glowing element -->
+        <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-link/20 to-violet/20 blur-xl opacity-75 dark:opacity-50"></div>
+        
+        <!-- Big Number -->
+        <span class="relative text-8xl md:text-9xl font-bold font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-ink to-mute/50 select-none">
+          404
+        </span>
+      </div>
+
+      <!-- Copy -->
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 mb-2 rounded-full border border-hairline bg-canvas-soft-2 text-[11px] font-mono text-body">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+          Error: Route_Not_Found
+        </div>
+        <h1 class="text-3xl font-semibold text-ink tracking-tight leading-tight">
+          This path doesn't exist.
+        </h1>
+        <p class="text-sm text-body leading-relaxed max-w-sm mx-auto">
+          We couldn't find the page you requested. It might have been moved, deleted, or the address might be misspelled.
+        </p>
+      </div>
+
+      <!-- Quick Links/Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
+        <a 
+          href="/" 
+          id="btn-404-home"
+          class="inline-flex items-center justify-center px-6 h-11 text-xs font-semibold rounded-md bg-primary text-on-primary hover:opacity-90 active:scale-98 transition-[transform,opacity] duration-150 cursor-pointer w-full sm:w-auto shadow-level-2"
+        >
+          Go Back Home
+        </a>
+        <a 
+          href="/contact-us" 
+          id="btn-404-support"
+          class="inline-flex items-center justify-center px-6 h-11 text-xs font-semibold rounded-md border border-hairline bg-canvas hover:bg-canvas-soft-2 text-ink active:scale-98 transition-[transform,background-color] duration-150 cursor-pointer w-full sm:w-auto"
+        >
+          Contact Support
+        </a>
+      </div>
+
+      <!-- Decorative code block -->
+      <div class="border border-hairline rounded-lg bg-canvas-soft-2/50 backdrop-blur-sm p-4 font-mono text-[11px] text-mute text-left max-w-xs mx-auto shadow-level-1">
+        <div class="flex items-center gap-1.5 pb-2 mb-2 border-b border-hairline">
+          <span class="w-2.5 h-2.5 rounded-full bg-hairline-strong"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-hairline-strong"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-hairline-strong"></span>
+          <span class="text-[9px] text-mute ml-1">terminal</span>
+        </div>
+        <p class="text-body"><span class="text-link">$</span> curl -I https://qrguy.com/path</p>
+        <p class="text-error mt-1">HTTP/2 404 Not Found</p>
+        <p class="text-[10px]">Date: {new Date().toUTCString()}</p>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

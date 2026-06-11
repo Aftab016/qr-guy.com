@@ -16,6 +16,7 @@ const {
 } = Astro.props;
 
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -40,7 +41,7 @@ import "../styles/global.css";
 		<meta name="keywords" content="qrguy, qr maker, qr maker free, free qr maker, qr maker online, adobe qr maker, qr maker google, google qr maker, canva qr maker, qr gen, barcode maker, barcode maker online, qr barcode maker, free qr barcode maker, upc barcode maker, free barcode maker, online barcode maker, barcode maker software, barcode maker pro, barcode scanner, handheld barcode scanner, barcode scanner app, free barcode scanner, barcode scanner online, 2d barcode scanner, walmart barcode scanner, amazon barcode scanner, online barcode scanner, zebra barcode scanner, qr guy, qr guys, qr boy" />
 		<meta name="robots" content={robots} />
 		<link rel="canonical" href={canonicalUrl} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="sitemap" href={`${base}sitemap-index.xml`} />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -87,12 +88,12 @@ import "../styles/global.css";
 		</script>
 		
 		<!-- Favicon -->
-		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" href={`${base}favicon-96x96.png`} sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<link rel="shortcut icon" href={`${base}favicon.ico`} />
+		<link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`} />
 		<meta name="apple-mobile-web-app-title" content="Qr Guy" />
-		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="manifest" href={`${base}site.webmanifest`} />
 		
 		<!-- Typography: Geist & Geist Mono from Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

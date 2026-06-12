@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCanonical } from '../utils/seo.js';
 ---
 
 <Layout 
   title="Privacy Policy — QR Guy" 
   description="Learn about the privacy-first model of QR Guy. We process all data locally. 0% server storage, 0% tracking, 100% security."
-  canonicalUrl="https://qrguy.com/privacy-policy"
+  canonicalUrl={getCanonical('/privacy-policy')}
 >
   <Header />
 
@@ -98,7 +99,7 @@ import Footer from '../components/Footer.astro';
         <div class="p-6 rounded-lg border border-hairline bg-canvas-soft-2/50 backdrop-blur-sm mt-8">
           <h3 class="text-sm font-semibold text-ink mb-2">Privacy Inquiries</h3>
           <p class="text-xs text-mute leading-relaxed">
-            If you have security questions or wish to audit the open-source code base, please visit our <a href="https://github.com/Aftab016/qr-guy.com" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">GitHub Repository</a> or contact us directly at <span class="font-mono text-ink text-[11px]">privacy@qrguy.com</span>.
+            If you have security questions or wish to audit the open-source code base, please visit our <a href="https://github.com/Aftab016/qr-guy.com" target="_blank" rel="noopener noreferrer" class="text-link hover:underline">GitHub Repository</a> where you can open an issue for any privacy inquiries.
           </p>
         </div>
 

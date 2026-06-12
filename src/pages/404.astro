@@ -2,8 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { seo } from '../utils/seo.js';
 
 const base = import.meta.env.BASE_URL;
+const displayDomain = seo.canonicalUrl || 'https://qrguy.com';
 ---
 
 <Layout 
@@ -72,7 +74,7 @@ const base = import.meta.env.BASE_URL;
           <span class="w-2.5 h-2.5 rounded-full bg-hairline-strong"></span>
           <span class="text-[9px] text-mute ml-1">terminal</span>
         </div>
-        <p class="text-body"><span class="text-link">$</span> curl -I https://qrguy.com/path</p>
+        <p class="text-body"><span class="text-link">$</span> curl -I {displayDomain}/path</p>
         <p class="text-error mt-1">HTTP/2 404 Not Found</p>
         <p class="text-[10px]">Date: {new Date().toUTCString()}</p>
       </div>

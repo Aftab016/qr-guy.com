@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCanonical } from '../utils/seo.js';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -9,7 +10,7 @@ const base = import.meta.env.BASE_URL;
 <Layout 
   title="About Us — QR Guy" 
   description="Learn about QR Guy (qrguy), the developer-grade, 100% client-side, open-source QR and barcode maker online workspace built for privacy."
-  canonicalUrl="https://qrguy.com/about-us"
+  canonicalUrl={getCanonical('/about-us')}
 >
   <Header />
 

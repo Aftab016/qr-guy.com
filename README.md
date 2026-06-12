@@ -7,7 +7,7 @@
 * **Fast by Default:** Zero JavaScript frontend leveraging Astro's Island architecture.
 * **Markdown Support:** Easy content authoring for blogs, portfolios, or documentation.
 * **Responsive Design:** Mobile-first approach ensuring a great user experience on all devices.
-* **SEO Optimized:** Built-in metadata management and lightning-fast load times.
+
 
 ## 🧞 Local Development
 

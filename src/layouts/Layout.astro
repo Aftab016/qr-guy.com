@@ -7,12 +7,14 @@ interface Props {
 	robots?: string;
 }
 
+import { seo } from '../utils/seo.js';
+
 const { 
-	title = "QR Guy — Free QR Maker & Barcode Maker Online (qrguy)", 
-	description = "Create and scan QR codes & barcodes online. QR Guy is a free qr maker and barcode maker (UPC, 2D) that runs 100% client-side and offline-ready. Customize shapes, gradients, and logos.",
-	canonicalUrl = "https://qrguy.com",
-	ogImage = "https://qrguy.com/og-image.png",
-	robots = "index, follow"
+	title = seo.defaultTitle, 
+	description = seo.defaultDescription,
+	canonicalUrl = seo.canonicalUrl || "",
+	ogImage = seo.ogImage || "",
+	robots = seo.robots
 } = Astro.props;
 
 import "../styles/global.css";
@@ -26,48 +28,51 @@ const base = import.meta.env.BASE_URL;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JE5F8WTKJ" is:inline></script>
-		<script is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'G-4JE5F8WTKJ');
-		</script>
+		{seo.googleAnalyticsId && (
+			<>
+				<script async src={`https://www.googletagmanager.com/gtag/js?id=${seo.googleAnalyticsId}`} is:inline></script>
+				<script is:inline define:vars={{ gaId: seo.googleAnalyticsId }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', gaId);
+				</script>
+			</>
+		)}
 
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta name="keywords" content="qrguy, qr maker, qr maker free, free qr maker, qr maker online, adobe qr maker, qr maker google, google qr maker, canva qr maker, qr gen, barcode maker, barcode maker online, qr barcode maker, free qr barcode maker, upc barcode maker, free barcode maker, online barcode maker, barcode maker software, barcode maker pro, barcode scanner, handheld barcode scanner, barcode scanner app, free barcode scanner, barcode scanner online, 2d barcode scanner, walmart barcode scanner, amazon barcode scanner, online barcode scanner, zebra barcode scanner, qr guy, qr guys, qr boy" />
+		<meta name="keywords" content={seo.defaultKeywords} />
 		<meta name="robots" content={robots} />
-		<link rel="canonical" href={canonicalUrl} />
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 		<link rel="sitemap" href={`${base}sitemap-index.xml`} />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonicalUrl} />
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={ogImage} />
+		{ogImage && <meta property="og:image" content={ogImage} />}
 		<meta property="og:site_name" content="QR Guy" />
 		<meta property="og:locale" content="en_US" />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalUrl} />
+		{canonicalUrl && <meta property="twitter:url" content={canonicalUrl} />}
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={ogImage} />
+		{ogImage && <meta property="twitter:image" content={ogImage} />}
 
 		<!-- Schema.org JSON-LD Structured Data -->
-		<script type="application/ld+json" is:inline>
-			{
+		{seo.schema && (
+			<script type="application/ld+json" is:inline set:html={JSON.stringify({
 				"@context": "https://schema.org",
 				"@type": "WebApplication",
-				"name": "QR Guy",
-				"alternateName": ["qrguy", "qr guy", "qr guys", "qr boy"],
-				"url": "https://qrguy.com",
-				"description": "Create and scan QR codes & barcodes online. QR Guy is a free qr maker and barcode maker (UPC, 2D) that runs 100% client-side and offline-ready. Customize shapes, gradients, and logos.",
+				"name": seo.schema.name,
+				"alternateName": seo.schema.alternateName,
+				"url": seo.schema.url,
+				"description": seo.schema.description,
 				"applicationCategory": "UtilityApplication",
 				"operatingSystem": "All",
 				"browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -76,16 +81,9 @@ const base = import.meta.env.BASE_URL;
 					"price": "0",
 					"priceCurrency": "USD"
 				},
-				"featureList": [
-					"Free QR Maker",
-					"Free Barcode Maker (UPC, Code 128, etc.)",
-					"Online Barcode Scanner & App",
-					"Custom shape and gradient options",
-					"Logo embedding on QR codes",
-					"100% client-side execution"
-				]
-			}
-		</script>
+				"featureList": seo.schema.featureList
+			})} />
+		)}
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/png" href={`${base}favicon-96x96.png`} sizes="96x96" />

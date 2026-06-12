@@ -9,11 +9,13 @@ import DevTab from '../components/DevTab.astro';
 import SeoContent from '../components/SeoContent.astro';
 import FaqSection from '../components/FaqSection.astro';
 import Footer from '../components/Footer.astro';
+import { getCanonical } from '../utils/seo.js';
 ---
 
 <Layout 
 	title="QR Guy — Free QR Maker & Barcode Maker Online (qrguy)" 
 	description="Create and scan QR codes & barcodes online. QR Guy is a free qr maker and barcode maker (UPC, 2D) that runs 100% client-side and offline-ready. Customize shapes, gradients, and logos."
+	canonicalUrl={getCanonical('/')}
 >
 	<!-- Navigation header -->
 	<Header />

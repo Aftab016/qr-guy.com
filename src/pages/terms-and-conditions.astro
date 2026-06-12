@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCanonical } from '../utils/seo.js';
 ---
 
 <Layout 
   title="Terms & Conditions — QR Guy" 
   description="Read the terms and conditions for using QR Guy. Open-source MIT licence guidelines, client-side utility disclaimer, and fair usage terms."
-  canonicalUrl="https://qrguy.com/terms-and-conditions"
+  canonicalUrl={getCanonical('/terms-and-conditions')}
 >
   <Header />
 
